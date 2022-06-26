@@ -1,8 +1,8 @@
-all: zip overview.png
+.PHONY: zip
+zip:
+	git archive -o $(notdir $(CURDIR))-$(shell git describe).zip @
 
-zip: background.js manifest.json icon/icon*.png
-	@-rm reszoom.zip
-	zip reszoom.zip $^
-
-overview.png: overview.xcf
-	convert overview.xcf -flatten overview.png
+.PHONY: release
+release:
+	git tag -s v$(shell jq -r .version manifest.json)
+	$(MAKE) zip
