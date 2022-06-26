@@ -1,10 +1,12 @@
 # reszoom
 
-Chrome extension to automatically adjust page zoom settings based on screen resolution
+**Chrome extension to automatically adjust page zoom settings based on screen resolution**
 
-Available via the [Chrome Webstore](https://chrome.google.com/webstore/detail/resolution-zoom/enjjhajnmggdgofagbokhmifgnaophmh)
+(this is my Manifest V3 fork of <https://github.com/raboof/reszoom>)
 
-Currently, it will decide between 'high-resolution' and 'low-resolution' by checking if the screen is wider than 2800 pixels. If so, pages at zoom levels 100% or 200% will be automatically set to 100% for regular-DPI screens, and 200% for high-DPI screens.
+~~Available via the [Chrome Webstore](https://chrome.google.com/webstore/detail/resolution-zoom/enjjhajnmggdgofagbokhmifgnaophmh)~~
+
+Currently, it will decide between 'high-resolution' and 'low-resolution' by checking if the screen is wider or taller than 2800 pixels. If so, pages at zoom levels 100% or 150% will be automatically set to 100% for regular-DPI screens, and 150% for high-DPI screens.
 
 ![Overview](overview.png)
 
@@ -30,14 +32,11 @@ render large or small accordingly. I'm not sure about the situation on Windows
 or Mac, but on Linux (especially X11) AFAICS there is no good infrastructure
 for this in place yet.
 
-This Chrome extension zooms pages to 200% or 100% based on whether you're on
+This Chrome extension zooms pages to 150% or 100% based on whether you're on
 a HiDPI or 'regular' screen, making sure Chrome renders the fonts at a
 suitable size.
 
-## Known problems
-
-Because of a [limitation in chrome](https://bugs.chromium.org/p/chromium/issues/detail?id=627830) the zoom level might not be updated immediately, but after a change in focus or tabs.
-
 ## Credits
 
+The original Manifest V2 extension was created and used to be maintained by [Arnout Engelen](https://github.com/raboof).
 The logo contains icons from the [eclectic-outline collection on the Noun project](https://thenounproject.com/serkan/collection/eclectic-outline-icons) by Serkan Doğan.
