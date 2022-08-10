@@ -1,5 +1,5 @@
 const HIDPI_WIDTH_THRESHOLD = 2800;
-const HIDPI_HEIGHT_THRESHOLD = 2800;
+const HIDPI_HEIGHT_THRESHOLD = 2000;
 const ZOOM_NORMAL = 1;
 const ZOOM_HIDPI = 1.5;
 const OVERRIDE_CUSTOM_ZOOM = false;
@@ -85,10 +85,18 @@ async function updateTabIdZoom(tabId, zoom) {
 	}
 }
 
+function isHiDPI(width, height) {
+	if (width > height) {
+		return width >= HIDPI_WIDTH_THRESHOLD && height >= HIDPI_HEIGHT_THRESHOLD;
+	} else {
+		return height >= HIDPI_WIDTH_THRESHOLD && width >= HIDPI_HEIGHT_THRESHOLD;
+	}
+}
+
 async function getWinZoom(win, screens) {
 	const screen = await findScreen(win, screens);
 	if (screen && screen.bounds) {
-		return screen.bounds.width > HIDPI_WIDTH_THRESHOLD || screen.bounds.height > HIDPI_HEIGHT_THRESHOLD ? ZOOM_HIDPI : ZOOM_NORMAL;
+		return isHiDPI(screen.bounds.width, screen.bounds.height) ? ZOOM_HIDPI : ZOOM_NORMAL;
 	} else {
 		return null;
 	}
